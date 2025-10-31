@@ -1,5 +1,5 @@
 <?php
-    include"PHP/connection.php";
+    include"../PHP/connection.php";
     if($_SESSION['role']!=='admin'){
         die("Unauthorized access");
     }
