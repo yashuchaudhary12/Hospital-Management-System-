@@ -1,6 +1,6 @@
 <?php
     include "../PHP/connection.php";
-    if($_SESSION['REQUEST_METHOD']!=='admin'){
+    if($_SESSION['role']!=='admin'){
         die("Unauthorized access");
     }
     if($_SERVER['REQUEST_METHOD']=='$_POST'){
