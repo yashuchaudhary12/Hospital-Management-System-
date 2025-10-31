@@ -21,13 +21,13 @@
                 $_SESSION['username']=$user['username'];
 
                 if($user['role']=='admin'){
-                    header("Location: admin_dashboard.php");
+                    header("Location: ../admin_dashboard.php");
                 }
                 elseif($user['role']=='doctor'){
-                    header("Location: doctor_dasboard.php");
+                    header("Location: ../doctor_dasboard.php");
                 }
                 else{
-                    header("Location: patient_dashboard.php");
+                    header("Location: ../patient_dashboard.php");
                 }
                 exit();
             }
