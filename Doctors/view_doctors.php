@@ -2,10 +2,10 @@
 session_start();
 include '../PHP/connection.php';
 
-if (!isset($_SESSION['role'])) {
-    $_SESSION['role'] = 'admin';
-    $_SESSION['username'] = 'TestAdmin';
-}
+// if (!isset($_SESSION['role'])) {
+//     $_SESSION['role'] = 'admin';
+//     $_SESSION['username'] = 'TestAdmin';
+// }
 
 if ($_SESSION['role'] !== 'admin') {
     die("Unauthorized access");
