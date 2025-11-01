@@ -128,6 +128,9 @@ $patient_id = $_SESSION['patient_id'];
                       <td>{$row['doctor_name']}</td>
                       <td>{$row['appointment_date']}</td>
                       <td>{$row['symptoms']}</td>
+                      <td>" . (!empty($row['diagnosis']) ? htmlspecialchars($row['diagnosis']) : "<i>Not added</i>") . "</td>
+                      <td>" . (!empty($row['prescription']) ? htmlspecialchars($row['prescription']) : "<i>Not added</i>") . "</td>
+                      <td>{$row['status']}</td>
                       <td><span class='badge {$statusClass}'>{$row['status']}</span></td>
                       <td>
                         <a href='cancel_appointment.php?id={$row['appointment_id']}' class='btn btn-danger'>Cancel</a>
