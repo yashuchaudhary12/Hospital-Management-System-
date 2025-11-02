@@ -8,7 +8,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'doctor') {
   exit;
 }
 
-// ✅ Get actual doctor_id using user_id from doctors table
+//get actual doctor id using user id
 $user_id = $_SESSION['user_id'];
 $doctor_query = "SELECT doctor_id FROM doctors WHERE id = '$user_id'";
 $doctor_result = $con->query($doctor_query);
