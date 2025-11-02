@@ -2,12 +2,12 @@
 include '../PHP/connection.php';
 session_start();
 
-if (!isset($_SESSION['patient_id'])) {
+if (!isset($_SESSION['user_id'])||  $_SESSION['role'] !== 'patient') {
   echo "<script>alert('Please login first!'); window.location.href='../login.html';</script>";
   exit;
 }
 
-$patient_id = $_SESSION['patient_id'];
+$patient_id = $_SESSION['user_id'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -104,6 +104,7 @@ $patient_id = $_SESSION['patient_id'];
       <table>
         <thead>
           <tr>
+            <th>#</th>
             <th>Doctor</th>
             <th>Date & Time</th>
             <th>Symptoms</th>
@@ -138,7 +139,7 @@ $patient_id = $_SESSION['patient_id'];
                     </tr>";
             }
           } else {
-            echo "<tr><td colspan='6' class='text-center text-muted'>You have no appointments yet.</td></tr>";
+            echo "<tr><td colspan='10' class='text-center text-muted'>You have no appointments yet.</td></tr>";
           }
           ?>
         </tbody>
@@ -146,7 +147,7 @@ $patient_id = $_SESSION['patient_id'];
     </div>
 
     <div class="text-center mt-3">
-      <a href="book_appointment.php" class="btn btn-primary">+ Book New Appointment</a>
+      <a href="add_appointment.php" class="btn btn-primary">+ Book New Appointment</a>
     </div>
   </div>
 </body>
