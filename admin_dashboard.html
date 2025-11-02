@@ -10,7 +10,7 @@
 
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container-fluid">
-      <a class="navbar-brand" href="index.html">HospitalMS</a>
+      <a class="navbar-brand" href="index.html">Hospital Management System</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -20,7 +20,7 @@
           <li class="nav-item"><a class="nav-link text-warning" href="#" id="logoutLink">Logout</a></li>
         </ul>
       </div>
-    </div>
+    </div> 
   </nav>
 
   <div class="container py-5">
@@ -30,20 +30,20 @@
         <div class="card shadow text-center p-4">
           <h4 class="mb-2">Doctor Details</h4>
           <p class="text-muted">View and manage registered doctors.</p>
-          <button class="btn btn-primary" onclick="window.location.href='show-doctors.html'">Show Doctors</button>
+          <button class="btn btn-primary" onclick="window.location.href='Doctors/view_doctors.php'">Show Doctors</button>
         </div>
       </div>
       <div class="col-md-4">
         <div class="card shadow text-center p-4">
           <h4 class="mb-2">Patient Details</h4>
           <p class="text-muted">View and manage registered patients.</p>
-          <button class="btn btn-success" onclick="window.location.href='show-patients.html'">Show Patients</button>
+          <button class="btn btn-success" onclick="window.location.href='Patients/view_patients.php'">Show Patients</button>
         </div>
       </div>
     </div>
   </div>
 
-  <script>
+  <!-- <script>
     const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
     if (!loggedInUser || loggedInUser.role !== "admin") {
       alert("Access denied. Admins only.");
@@ -54,7 +54,7 @@
       localStorage.removeItem("loggedInUser");
       window.location.href = "index.html";
     });
-  </script>
+  </script> -->
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
