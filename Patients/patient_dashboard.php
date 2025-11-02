@@ -16,7 +16,7 @@ if (!isset($_SESSION['user_id'])|| $_SESSION['role'] !== 'patient') {
 <body>
   <nav class="navbar navbar-dark bg-dark">
     <div class="container-fluid">
-      <a class="navbar-brand" href="index.html">← Home</a>
+      <a class="navbar-brand" href="../index.html">← Home</a>
       <span class="navbar-text text-white">Patient Dashboard</span>
     </div>
   </nav>
@@ -26,16 +26,16 @@ if (!isset($_SESSION['user_id'])|| $_SESSION['role'] !== 'patient') {
     <div class="row text-center">
       <div class="col-md-4 mb-3">
         <div class="card p-3 shadow-sm">
-          <h5>View Reports</h5>
-          <p>Access your uploaded medical reports</p>
-          <button class = "btn btn-success" onclick="window.location.href='./Appointments/view_appointments.php'">View Reports</button>
+          <h5>View Appointment</h5>
+          <p>Access your Appointment reports</p>
+          <button class = "btn btn-success" onclick="window.location.href='view_appointments.php'">View Appointments</button>
         </div>
       </div>
       <div class="col-md-4 mb-3">
         <div class="card p-3 shadow-sm">
           <h5>Book Appointment</h5>
           <p>Book appointment with available doctors</p>
-          <button class = "btn btn-success">Book Appointment</button>
+          <button class = "btn btn-success" onclick="window.location.href='add_appointment.php'">Book Appointment</button>
         </div>
       </div>
       <div class="col-md-4 mb-3">

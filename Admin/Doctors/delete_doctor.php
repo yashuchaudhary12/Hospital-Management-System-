@@ -1,5 +1,5 @@
 <?php
-    include"../PHP/connection.php";
+    include "../../PHP/connection.php";
     if($_SESSION['role']!=='admin'){
         die("Unauthorized access");
     }
@@ -9,7 +9,7 @@
         $sql="delete from users where id=$id";
 
         if($con->query($sql)){
-            echo"Patient deleted successfully";
+            echo"Doctor deleted successfully";
         }
         else{
             echo"Error:".$conn->error;

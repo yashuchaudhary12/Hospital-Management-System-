@@ -42,7 +42,7 @@ $patient_id = $_SESSION['user_id'];
     th, td {
       padding: 12px 14px;
       border-bottom: 1px solid #ddd;
-      text-align: left;
+      text-align: center;
     }
     th {
       background: #0078d7;
@@ -108,6 +108,8 @@ $patient_id = $_SESSION['user_id'];
             <th>Doctor</th>
             <th>Date & Time</th>
             <th>Symptoms</th>
+            <th>Diagnosis</th>
+            <th>Prescription</th>
             <th>Status</th>
             <th>Action</th>
           </tr>
@@ -131,7 +133,6 @@ $patient_id = $_SESSION['user_id'];
                       <td>{$row['symptoms']}</td>
                       <td>" . (!empty($row['diagnosis']) ? htmlspecialchars($row['diagnosis']) : "<i>Not added</i>") . "</td>
                       <td>" . (!empty($row['prescription']) ? htmlspecialchars($row['prescription']) : "<i>Not added</i>") . "</td>
-                      <td>{$row['status']}</td>
                       <td><span class='badge {$statusClass}'>{$row['status']}</span></td>
                       <td>
                         <a href='cancel_appointment.php?id={$row['appointment_id']}' class='btn btn-danger'>Cancel</a>

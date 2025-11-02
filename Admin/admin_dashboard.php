@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['user_id'])|| $_SESSION['role'] !== 'admin') {
-  echo "<script>alert('Access denied. Please login first.'); window.location.href='login.html';</script>";
+  echo "<script>alert('Access denied. Please login first.'); window.location.href='../login.html';</script>";
   exit();
 }
 ?>
@@ -18,14 +18,14 @@ if (!isset($_SESSION['user_id'])|| $_SESSION['role'] !== 'admin') {
 
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container-fluid">
-      <a class="navbar-brand" href="index.html">Hospital Management System</a>
+      <a class="navbar-brand" href="../index.html">Hospital Management System</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-          <li class="nav-item"><a class="nav-link text-warning" href="./PHP/logout.php">Logout</a></li>
+          <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link text-warning" href="../PHP/logout.php">Logout</a></li>
         </ul>
       </div>
     </div> 

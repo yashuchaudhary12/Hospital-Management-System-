@@ -34,11 +34,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             // Redirection to role-based dashboard
             if ($user['role'] === 'admin') {
-                header("Location: ../admin_dashboard.php");
+                header("Location: ../Admin/admin_dashboard.php");
             } elseif ($user['role'] === 'doctor') {
-                header("Location: ../doctor_dashboard.php"); 
+                header("Location: ../Doctors/doctor_dashboard.php"); 
             } else {
-                header("Location: ../patient_dashboard.php");
+                header("Location: ../Patients/patient_dashboard.php");
             }
             $stmt->close();
             $con->close();

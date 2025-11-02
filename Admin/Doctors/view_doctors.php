@@ -1,6 +1,6 @@
 <?php
 session_start();
-include '../PHP/connection.php';
+include '../../PHP/connection.php';
 
 // if (!isset($_SESSION['role'])) {
 //     $_SESSION['role'] = 'admin';
@@ -82,7 +82,7 @@ td {
 <body class="bg-light">
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container-fluid">
-      <a class="navbar-brand fw-bold" href="../admin_dashboard.html">Hospital Admin</a>
+      <a class="navbar-brand fw-bold" href="../admin_dashboard.php">Hospital Admin</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -90,7 +90,7 @@ td {
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
-            <a class="nav-link" href="../admin_dashboard.html">Dashboard</a>
+            <a class="nav-link" href="../admin_dashboard.php">Dashboard</a>
           </li>
           <li class="nav-item">
             <a class="nav-link active" href="../Patients/view_patients.php">Patients</a>
@@ -102,7 +102,7 @@ td {
             <span class="nav-link text-white">Welcome, <?php echo $_SESSION['username']; ?></span>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-warning fw-bold" href="../PHP/logout.php">Logout</a>
+            <a class="nav-link text-warning fw-bold" href="../../PHP/logout.php">Logout</a>
           </li>
         </ul>
       </div>
