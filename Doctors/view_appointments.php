@@ -2,12 +2,24 @@
 include '../PHP/connection.php';
 session_start();
 
+// Check if logged in as doctor
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'doctor') {
   echo "<script>alert('Please login first!'); window.location.href='../login.html';</script>";
   exit;
 }
 
-$doctor_id = $_SESSION['user_id'];
+// ✅ Get actual doctor_id using user_id from doctors table
+$user_id = $_SESSION['user_id'];
+$doctor_query = "SELECT doctor_id FROM doctors WHERE id = '$user_id'";
+$doctor_result = $con->query($doctor_query);
+
+if ($doctor_result->num_rows > 0) {
+  $doctor_row = $doctor_result->fetch_assoc();
+  $doctor_id = $doctor_row['doctor_id'];
+} else {
+  echo "<script>alert('Doctor record not found!'); window.location.href='../login.html';</script>";
+  exit;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -52,17 +64,6 @@ $doctor_id = $_SESSION['user_id'];
     tr:hover {
       background: #f9fbff;
     }
-    .badge {
-      display: inline-block;
-      padding: 5px 10px;
-      border-radius: 8px;
-      font-size: 13px;
-      text-align: center;
-    }
-    .badge.scheduled { background: #fff3cd; color: #856404; }
-    .badge.completed { background: #d4edda; color: #155724; }
-    .badge.cancelled { background: #f8d7da; color: #721c24; }
-
     .btn {
       padding: 7px 12px;
       border-radius: 6px;
@@ -70,14 +71,6 @@ $doctor_id = $_SESSION['user_id'];
       text-decoration: none;
       cursor: pointer;
       transition: 0.2s;
-    }
-    .btn-danger {
-      color: #fff;
-      background: #d9534f;
-      border: none;
-    }
-    .btn-danger:hover {
-      background: #c9302c;
     }
     .btn-primary {
       background-color: #0078d7;
@@ -89,11 +82,7 @@ $doctor_id = $_SESSION['user_id'];
     }
     .text-center { text-align: center; }
     .text-muted { color: #777; }
-    .mt-3 { margin-top: 25px; }
-
-    .table-wrapper {
-      overflow-x: auto;
-    }
+    .table-wrapper { overflow-x: auto; }
   </style>
 </head>
 <body>
@@ -107,7 +96,8 @@ $doctor_id = $_SESSION['user_id'];
             <th>Patient</th>
             <th>Date & Time</th>
             <th>Symptoms</th>
-            <th>Status</th>
+            <th>Diagnosis</th>
+            <th>Prescription</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -117,21 +107,19 @@ $doctor_id = $_SESSION['user_id'];
                   FROM appointments a
                   JOIN patients p ON a.patient_id = p.patient_id
                   WHERE a.doctor_id = '$doctor_id'
+                  and a.status!='cancelled'
                   ORDER BY a.appointment_date DESC";
           $result = $con->query($sql);
 
           if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
-              $statusClass = strtolower($row['status']);
               echo "<tr>
                       <td>{$row['patient_name']}</td>
                       <td>{$row['appointment_date']}</td>
                       <td>{$row['symptoms']}</td>
                       <td>" . (!empty($row['diagnosis']) ? htmlspecialchars($row['diagnosis']) : "<i>Not added</i>") . "</td>
-                    <td>" . (!empty($row['prescription']) ? htmlspecialchars($row['prescription']) : "<i>Not added</i>") . "</td>
-                    <td>
-                      <a href='add_diagnosis.php?id={$row['appointment_id']}' class='btn btn-primary'>Update</a>
-                    </td>
+                      <td>" . (!empty($row['prescription']) ? htmlspecialchars($row['prescription']) : "<i>Not added</i>") . "</td>
+                      <td><a href='add_diagnosis.php?id={$row['appointment_id']}' class='btn btn-primary'>Update</a></td>
                     </tr>";
             }
           } else {
