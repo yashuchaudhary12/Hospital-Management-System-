@@ -42,9 +42,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 $doctor_stmt->execute();
                 $doctor_stmt->close();
             }
-            
-                echo "<script>alert('Registered successfully');</script>";
-                header("Location:../login.html");
+
+                echo "<script>alert('Registered successfully! Redirecting to login page...'); window.location.href='../login.html';</script>";
                 exit;
             } else {
                 echo "Error:" . $stmt->error;
