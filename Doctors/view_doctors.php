@@ -27,6 +27,7 @@ $result = $con->query($sql);
 <html>
 <head>
 <title>View Doctors</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <style>
 body {
   font-family: 'Poppins', sans-serif;
@@ -35,6 +36,9 @@ body {
   padding: 0;
 }
 
+h2{
+  text-align: center;
+}
 table {
   width: 100%;
   border-collapse: collapse;
@@ -75,10 +79,42 @@ td {
 }
 </style>
 </head>
-<body>
-  <div>
-    <table>
-        <thead>
+<body class="bg-light">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container-fluid">
+      <a class="navbar-brand fw-bold" href="../admin_dashboard.html">Hospital Admin</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="../admin_dashboard.html">Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="../Patients/view_patients.php">Patients</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="">Doctors</a>
+          </li>
+          <li class="nav-item">
+            <span class="nav-link text-white">Welcome, <?php echo $_SESSION['username']; ?></span>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-warning fw-bold" href="../PHP/logout.php">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container mt-4">
+    <h2>Doctors</h2>
+    <div class="table-responsive">
+      <table class="table table-bordered table-striped align-middle">
+        <thead class="table-primary text-center">
+
             <tr>
                 <th>ID</th>
                 <th>Full Name</th>
@@ -123,11 +159,12 @@ td {
                 </tr>";
             }
         } else {
-            echo "<tr><td colspan='13' class='text-center'>No doctors found.</td></tr>";
+            echo "<tr><td colspan='13' class='text-center text-muted'>No doctors found.</td></tr>";
         }
         ?>
         </tbody>
     </table>
   </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
