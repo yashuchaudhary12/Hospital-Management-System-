@@ -10,7 +10,7 @@ include '../PHP/connection.php';
 if($_SESSION['role']!=='admin'){
     die("Unauthorized access");
 }
-$sql="select p.patient_id,p.full_name,p.gender,p.phone,p.email,p.blood_group,p.created_at
+$sql="select p.patient_id,p.full_name,p.gender,p.date_of_birth,p.phone,p.email,p.blood_group,p.created_at
 from patients p 
 inner join users u on p.id=u.id 
 where u.role='patient'";
@@ -57,6 +57,17 @@ td {
   color: #161616ff;
 }
 
+.btn-danger {
+  background-color: #dc3545;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 6px;
+  text-decoration: none;
+}
+
+.btn-danger:hover {
+  background-color: #c82333;
+}
 </style>
 </head>
 <body>
@@ -90,7 +101,7 @@ td {
                     <td>{$row['blood_group']}</td>
                     <td>{$row['created_at']}</td>
                     <td>
-                        <a href='delete_patients.php?id={$row['doctor_id']}' 
+                        <a href='delete_patients.php?id={$row['patient_id']}' 
                            class='btn-danger'
                            onclick='return confirm(\"Are you sure you want to delete this patient?\");'>
                            Delete
