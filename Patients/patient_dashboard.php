@@ -12,6 +12,19 @@ if (!isset($_SESSION['user_id'])|| $_SESSION['role'] !== 'patient') {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Patient Dashboard</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+     footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #222;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 14px;
+  }
+  </style>
 </head>
 <body>
   <nav class="navbar navbar-dark bg-dark">
