@@ -63,7 +63,7 @@ if (!isset($_SESSION['user_id'])|| $_SESSION['role'] !== 'admin') {
       window.location.href = "index.html";
     });
   </script> -->
-
+<footer>&copy;Hospital-Management-System</footer>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
