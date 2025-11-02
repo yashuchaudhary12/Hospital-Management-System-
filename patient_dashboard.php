@@ -1,3 +1,10 @@
+<?php
+session_start();
+if (!isset($_SESSION['user_id'])|| $_SESSION['role'] !== 'patient') {
+  echo "<script>alert('Access denied. Please login first.'); window.location.href='login.html';</script>";
+  exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,7 +28,7 @@
         <div class="card p-3 shadow-sm">
           <h5>View Reports</h5>
           <p>Access your uploaded medical reports</p>
-          <button class = "btn btn-success">View Reports</button>
+          <button class = "btn btn-success" onclick="window.location.href='./Appointments/view_appointments.php'">View Reports</button>
         </div>
       </div>
       <div class="col-md-4 mb-3">
