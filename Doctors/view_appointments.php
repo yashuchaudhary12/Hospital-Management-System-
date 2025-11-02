@@ -116,7 +116,7 @@ if ($doctor_result->num_rows > 0) {
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="patient_dashboard.php">Dashboard</a></li>
+          <li class="nav-item"><a class="nav-link" href="doctor_dashboard.php">Dashboard</a></li>
           <li class="nav-item"><a class="nav-link" href="profile.php">Profile</a></li>
           <li class="nav-item"><a class="nav-link text-warning" href="../PHP/logout.php">Logout</a></li>
         </ul>
