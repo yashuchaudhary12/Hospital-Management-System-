@@ -20,6 +20,22 @@ if ($doctor_result->num_rows > 0) {
   echo "<script>alert('Doctor record not found!'); window.location.href='../login.html';</script>";
   exit;
 }
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update'])) {
+  $appointment_id = $_POST['appointment_id'];
+  $diagnosis = $con->real_escape_string($_POST['diagnosis']);
+  $prescription = $con->real_escape_string($_POST['prescription']);
+
+  $update_query = "UPDATE appointments 
+                   SET diagnosis = '$diagnosis', prescription = '$prescription', status = 'completed'
+                   WHERE appointment_id = '$appointment_id' AND doctor_id = '$doctor_id'";
+
+  if ($con->query($update_query)) {
+    echo "<script>alert('Appointment updated successfully!'); window.location.href='view_appointments.php';</script>";
+    exit;
+  } else {
+    echo "<script>alert('Error updating appointment: " . $con->error . "');</script>";
+  }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -152,12 +168,21 @@ if ($doctor_result->num_rows > 0) {
           if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
               echo "<tr>
-                      <td>{$row['patient_name']}</td>
-                      <td>{$row['appointment_date']}</td>
-                      <td>{$row['symptoms']}</td>
-                      <td>" . (!empty($row['diagnosis']) ? htmlspecialchars($row['diagnosis']) : "<i>Not added</i>") . "</td>
-                      <td>" . (!empty($row['prescription']) ? htmlspecialchars($row['prescription']) : "<i>Not added</i>") . "</td>
-                      <td><a href='add_diagnosis.php?id={$row['appointment_id']}' class='btn btn-primary'>Update</a></td>
+                      <form method='POST' action=''>
+                        <td>{$row['patient_name']}</td>
+                        <td>{$row['appointment_date']}</td>
+                        <td>{$row['symptoms']}</td>
+                        <td>
+                          <textarea name='diagnosis' class='form-control' rows='2' placeholder='Enter diagnosis'>" . htmlspecialchars($row['diagnosis']) . "</textarea>
+                        </td>
+                        <td>
+                          <textarea name='prescription' class='form-control' rows='2' placeholder='Enter prescription'>" . htmlspecialchars($row['prescription']) . "</textarea>
+                        </td>
+                        <td>
+                          <input type='hidden' name='appointment_id' value='{$row['appointment_id']}'>
+                          <button type='submit' name='update' class='btn btn-success'>Save</button>
+                        </td>
+                      </form>
                     </tr>";
             }
           } else {
@@ -168,6 +193,7 @@ if ($doctor_result->num_rows > 0) {
       </table>
     </div>
   </div>
+  <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js'></script>
 </body>
 
 </html>
