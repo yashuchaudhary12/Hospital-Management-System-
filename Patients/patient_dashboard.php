@@ -47,5 +47,6 @@ if (!isset($_SESSION['user_id'])|| $_SESSION['role'] !== 'patient') {
       </div>
     </div>
   </div>
+  <footer>&copy;Hospital-Management-System</footer>
 </body>
 </html>

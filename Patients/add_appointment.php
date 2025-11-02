@@ -134,6 +134,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <input type="submit" value="Book Appointment">
         </form>
     </div>
+    <footer>&copy;Hospital-Management-System</footer>
 </body>
 
 </html>

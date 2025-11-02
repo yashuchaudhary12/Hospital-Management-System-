@@ -203,6 +203,7 @@ $patient_id = $_SESSION['user_id'];
       <a href="add_appointment.php" class="btn btn-primary">+ Book New Appointment</a>
     </div>
   </div>
+  <footer>&copy;Hospital-Management-System</footer>
 </body>
 
 </html>
