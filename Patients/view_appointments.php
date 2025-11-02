@@ -2,7 +2,7 @@
 include '../PHP/connection.php';
 session_start();
 
-if (!isset($_SESSION['user_id'])||  $_SESSION['role'] !== 'patient') {
+if (!isset($_SESSION['user_id']) ||  $_SESSION['role'] !== 'patient') {
   echo "<script>alert('Please login first!'); window.location.href='../login.html';</script>";
   exit;
 }
@@ -11,9 +11,11 @@ $patient_id = $_SESSION['user_id'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" content="width=device-width, initial-scale=1.0">
   <title>My Appointments</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
     body {
       font-family: "Segoe UI", sans-serif;
@@ -21,6 +23,7 @@ $patient_id = $_SESSION['user_id'];
       margin: 0;
       padding: 0;
     }
+
     .container {
       max-width: 1000px;
       margin: 60px auto;
@@ -29,29 +32,36 @@ $patient_id = $_SESSION['user_id'];
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
       padding: 30px 40px;
     }
+
     h3 {
       text-align: center;
       color: #0078d7;
       margin-bottom: 30px;
     }
+
     table {
       width: 100%;
       border-collapse: collapse;
       font-size: 15px;
     }
-    th, td {
+
+    th,
+    td {
       padding: 12px 14px;
       border-bottom: 1px solid #ddd;
       text-align: center;
     }
+
     th {
       background: #0078d7;
       color: #fff;
       font-weight: 600;
     }
+
     tr:hover {
       background: #f9fbff;
     }
+
     .badge {
       display: inline-block;
       padding: 5px 10px;
@@ -59,9 +69,21 @@ $patient_id = $_SESSION['user_id'];
       font-size: 13px;
       text-align: center;
     }
-    .badge.scheduled { background: #fff3cd; color: #856404; }
-    .badge.completed { background: #d4edda; color: #155724; }
-    .badge.cancelled { background: #f8d7da; color: #721c24; }
+
+    .badge.scheduled {
+      background: #fff3cd;
+      color: #856404;
+    }
+
+    .badge.completed {
+      background: #d4edda;
+      color: #155724;
+    }
+
+    .badge.cancelled {
+      background: #f8d7da;
+      color: #721c24;
+    }
 
     .btn {
       padding: 7px 12px;
@@ -71,32 +93,62 @@ $patient_id = $_SESSION['user_id'];
       cursor: pointer;
       transition: 0.2s;
     }
+
     .btn-danger {
       color: #fff;
       background: #d9534f;
       border: none;
     }
+
     .btn-danger:hover {
       background: #c9302c;
     }
+
     .btn-primary {
       background-color: #0078d7;
       color: #fff;
       border: none;
     }
+
     .btn-primary:hover {
       background-color: #005fa3;
     }
-    .text-center { text-align: center; }
-    .text-muted { color: #777; }
-    .mt-3 { margin-top: 25px; }
+
+    .text-center {
+      text-align: center;
+    }
+
+    .text-muted {
+      color: #777;
+    }
+
+    .mt-3 {
+      margin-top: 25px;
+    }
 
     .table-wrapper {
       overflow-x: auto;
     }
   </style>
 </head>
+
 <body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Hospital Management System</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="patient_dashboard.php">Dashboard</a></li>
+          <li class="nav-item"><a class="nav-link" href="profile.php">Profile</a></li>
+          <li class="nav-item"><a class="nav-link text-warning" href="../PHP/logout.php">Logout</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
   <div class="container">
     <h3>My Appointments</h3>
 
@@ -152,4 +204,5 @@ $patient_id = $_SESSION['user_id'];
     </div>
   </div>
 </body>
+
 </html>
