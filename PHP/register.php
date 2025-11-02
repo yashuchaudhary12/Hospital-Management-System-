@@ -26,7 +26,24 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         if ($stmt) {
             $stmt->bind_param("ssss", $username, $email, $hashed_password, $role);
             if ($stmt->execute()) {
-                echo "Registered successfully";
+                $user_id=$stmt->insert_id;
+            if($role==="patient"){
+                $patient_sql="insert into patients(id,full_name,email)values(?,?,?)";
+                $patient_stmt=$con->prepare($patient_sql);
+                $patient_stmt->bind_param("iss",$user_id,$username,$email);
+                $patient_stmt->execute();
+                $patient_stmt->close();
+            }
+
+            if($role==="doctor"){
+                $doctor_sql="insert into doctors(id,full_name,email)values(?,?,?)";
+                $doctor_stmt=$con->prepare($doctor_sql);
+                $doctor_stmt->bind_param("iss",$user_id,$username,$email);
+                $doctor_stmt->execute();
+                $doctor_stmt->close();
+            }
+            
+                echo "<script>alert('Registered successfully');</script>";
                 header("Location:../login.html");
                 exit;
             } else {
