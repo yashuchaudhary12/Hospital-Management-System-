@@ -1,43 +1,58 @@
 <?php
-    session_start();
-    include 'connection.php';
+session_start();
+include 'connection.php';
 
-    if($_SERVER['REQUEST_METHOD']=='POST'){
-        $email=$_POST['email'];
-        $password=$_POST['password'];
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $email = trim($_POST['email']);
+    $password = trim($_POST['password']);
 
-        $query="select* from users where email=?";
-        $stmt=$con->prepare($query);
-        $stmt->bind_param("s",$email);
-        $stmt->execute();
-        $result=$stmt->get_result();
+    $query = "SELECT* FROM users WHERE email = ?";
+    $stmt = $con->prepare($query);
 
-        if($result->num_rows==1){
-            $user=$result->fetch_assoc();
-
-            if($password==$user['password']){
-                $_SESSION['user_id']=$user['user_id'];
-                $_SESSION['role']=$user['role'];
-                $_SESSION['username']=$user['username'];
-
-                if($user['role']=='admin'){
-                    header("Location: ../admin_dashboard.php");
-                }
-                elseif($user['role']=='doctor'){
-                    header("Location: ../doctor_dasboard.php");
-                }
-                else{
-                    header("Location: ../patient_dashboard.php");
-                }
-                exit();
-            }
-            else{
-                echo"Invalid password";
-            }
-        }
-        else{
-            echo"No user found with this email";
-        }
+    if (!$stmt) {
+        
+        echo "<script>alert('Server error. Please try again later.'); window.history.back();</script>";
+        exit;
     }
 
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result && $result->num_rows === 1) {
+        $user = $result->fetch_assoc();
+
+        // Use of password_verify to check the hashed password
+        if (password_verify($password, $user['password'])) {
+            // Regenerate session id 
+            session_regenerate_id(true);
+
+            $_SESSION['user_id']  = $user['user_id'];
+            $_SESSION['username'] = $user['username'];
+            $_SESSION['email']    = $user['email'];
+            $_SESSION['role']     = $user['role'];
+
+            // Redirection to role-based dashboard
+            if ($user['role'] === 'admin') {
+                header("Location: ../admin_dashboard.html");
+            } elseif ($user['role'] === 'doctor') {
+                header("Location: ../doctor_dashboard.html"); 
+            } else {
+                header("Location: ../patient_dashboard.html");
+            }
+            $stmt->close();
+            $con->close();
+            exit;
+        } else {
+            
+            echo "<script>alert('Invalid email or password.'); window.history.back();</script>";
+        }
+    } else {
+       
+        echo "<script>alert('Invalid email or password.'); window.history.back();</script>";
+    }
+
+    $stmt->close();
+    $con->close();
+}
 ?>
