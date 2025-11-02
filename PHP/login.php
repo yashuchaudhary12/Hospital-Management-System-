@@ -36,9 +36,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if ($user['role'] === 'admin') {
                 header("Location: ../admin_dashboard.php");
             } elseif ($user['role'] === 'doctor') {
-                header("Location: ../doctor_dashboard.html"); 
+                header("Location: ../doctor_dashboard.php"); 
             } else {
-                header("Location: ../patient_dashboard.html");
+                header("Location: ../patient_dashboard.php");
             }
             $stmt->close();
             $con->close();
