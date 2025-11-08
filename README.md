@@ -22,40 +22,6 @@ It streamlines hospital operations like appointments, prescriptions, and user ma
 | **Server** | Apache (via XAMPP) |
 | **Version Control** | Git + GitHub |
 
-##  Project Structure
-Hospital-Management-System/
-│
-├── index.html
-├── login.html
-├── register.html
-│
-├── PHP/
-│ ├── connection.php
-│ ├── register.php
-│ ├── login.php
-│ ├── logout.php
-│
-├── admin_dashboard.html
-├── doctor_dashboard.html
-├── patient_dashboard.html
-|
-├──Appointments/
-|├──add_appointment.php
-|├──cancel_appointment.php
-|├──view_appointments.php
-|
-├──Doctors/
-|├──add_doctor.php
-|├──delete_doctor.php
-|├──view_doctors.php
-|├──view_appointments.php
-|
-├──Patients/
-|├──add_patient.php
-|├──delete_patient.php
-|├──view_patients.php
-|
-
 ## How to Run
 1. Clone the repository
 2. Import the SQL database
