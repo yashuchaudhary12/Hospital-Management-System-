@@ -26,3 +26,7 @@ It streamlines hospital operations like appointments, prescriptions, and user ma
 1. Clone the repository
 2. Import the SQL database
 3. Run on localhost via XAMPP
+   ##Contributors
+  1 Yashu- Frontend (html,css, bootstrap)
+    2 Bhumika Pimoli-Database and Backend(integration of modules and module design)
+   3 Disha Baliyan-Module deisgn
